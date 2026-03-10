@@ -1153,101 +1153,69 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-  /* Prevent horizontal scrolling & pad for bottom nav */
+  /* Prevent horizontal scrolling */
   body {
     overflow-x: hidden;
-    padding-bottom: calc(85px + env(safe-area-inset-bottom)); 
   }
 
-  /* Compact top header, acting like an App Bar */
+  /* Professional Mobile Top App Bar Layout */
   .site-header {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.8rem 5vw;
-    background: rgba(10, 10, 10, 0.85);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 1.2rem 0;
+    align-items: center;
+    padding: 1rem 5vw;
+    background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
+  /* Keep Logo on Top Left */
   .logo-lockup {
+    grid-column: 1 / span 2;
+    grid-row: 1;
     transform: scale(0.85);
     transform-origin: left center;
   }
 
-  /* Extract NAV to become a Bottom Tab Bar */
-  .site-header nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: rgba(15, 15, 15, 0.95);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
-    z-index: 9999;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+  /* Flatten nav so its children follow the site-header grid */
+  nav {
+    display: contents;
   }
 
-  nav a,
+  /* Move Cart Button to Top Right */
   .cart-nav {
-    margin: 0;
-    flex: 1;
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0 !important;
+    padding: 0.5rem 1rem !important; /* Force override to fix squish */
+    font-size: 0.85rem;
+    white-space: nowrap !important; /* Prevents CART ( \n 1 \n ) wrapping */
+    justify-self: end;
+    border-radius: 99px !important;
+    background: rgba(247, 194, 97, 0.15) !important;
+  }
+
+  /* Spread Navigation Links evenly below */
+  nav a {
+    grid-row: 2;
+    margin: 0 !important;
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     letter-spacing: 0.1rem;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
-    color: var(--muted);
-    padding: 0.5rem 0;
-    border: none;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    transition: all 0.3s ease;
+    padding: 1rem 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Divider line */
   }
 
-  /* Tab Indicator */
-  nav a::before,
-  .cart-nav::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 4px;
-    border-radius: 4px;
-    background: transparent;
-    transition: background 0.3s;
-    margin-bottom: 4px;
-  }
-
-  nav a.active::before,
-  nav a:hover::before {
-    background: var(--gold);
-    box-shadow: 0 0 10px var(--gold);
-  }
-
-  nav a.active {
-    color: var(--text);
-  }
-
-  .cart-nav {
-    color: var(--gold);
-  }
-
-  .cart-nav::before {
-    background: rgba(245, 194, 97, 0.3);
-  }
+  nav a:nth-of-type(1) { grid-column: 1; }
+  nav a:nth-of-type(2) { grid-column: 2; }
+  nav a:nth-of-type(3) { grid-column: 3; }
 
   /* Optimized Hero for Mobile */
   .hero-section {
-    padding-top: 5rem;
-    padding-bottom: 3rem;
+    padding-top: 4rem;
     grid-template-columns: 1fr;
     text-align: center;
   }
@@ -1260,137 +1228,32 @@ textarea:focus {
 
   .hero-kicker {
     font-size: 0.75rem;
-    letter-spacing: 0.25rem;
-    margin-bottom: 1rem;
+    letter-spacing: 0.2rem;
   }
 
   .hero-content h1 {
-    font-size: clamp(2.8rem, 14vw, 4.5rem);
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 12vw, 3.8rem);
+    line-height: 1.1;
   }
 
   .hero-icons {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
+    flex-direction: column;
     gap: 1.5rem;
-    width: 100vw;
-    margin-left: -5vw;
-    padding: 0 5vw 1rem;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .hero-icons::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hero-icons > div {
-    flex: 0 0 auto;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
   }
 
   .cta-row {
     justify-content: center;
     width: 100%;
-    margin-top: 1rem;
   }
 
   .btn {
     width: 100%;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-  }
-
-  /* Bottom Sheet Modals for Cart & Checkout (App feel) */
-  .cart-overlay, .checkout-overlay {
-    align-items: flex-end;
-  }
-
-  .cart-modal, .checkout-modal {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 85vh;
-    border-radius: 28px 28px 0 0;
-    border: none;
-    border-top: 1px solid rgba(247, 194, 97, 0.3);
-    background: linear-gradient(180deg, rgba(20,20,20,0.95), rgba(5,5,5,0.98));
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 -20px 40px rgba(0,0,0,0.95);
-    padding: 0;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.32, 1, 0.23, 1);
-  }
-
-  .cart-overlay[aria-hidden="false"] .cart-modal,
-  .checkout-overlay[aria-hidden="false"] .checkout-modal {
-    transform: translateY(0);
-  }
-
-  /* Bottom sheet grip handle */
-  .cart-header, .checkout-header {
-    padding: 1.5rem 1.5rem 1rem;
-    background: transparent;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .cart-header::before, .checkout-header::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 4px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 4px;
-  }
-
-  .cart-items {
-    padding: 1rem 1.5rem;
-  }
-
-  .cart-item {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 12px;
-  }
-
-  .cart-footer {
-    padding: 1.5rem;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    position: sticky;
-    bottom: 0;
-    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
-  }
-
-  .checkout-body {
-    padding: 1.5rem;
   }
 
   /* Refined Forms and Grids for Small Screens */
   .order-form {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .checkout-body input, .checkout-body textarea {
-    padding: 1rem;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.03);
-    margin-bottom: 0;
+    gap: 1rem;
   }
 
   .adrenaline-content h2 {
@@ -1399,18 +1262,16 @@ textarea:focus {
 
   .shop-grid, .product-grid, .contact-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .product-card {
     padding: 1.5rem;
-    border-radius: 16px;
   }
 
   .jar-specs {
     grid-template-columns: 1fr;
     border-radius: 12px;
-    clip-path: none;
   }
   
   .jar-specs > div:last-child {
@@ -2177,25 +2038,153 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-  .alpha-confirmation-content {
-    padding: 2rem 1.5rem;
+  /* Prevent horizontal scrolling */
+  body {
+    overflow-x: hidden;
   }
 
-  .alpha-title {
-    font-size: 1.8rem;
+  /* Professional Mobile Top App Bar Layout */
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem 0;
+    align-items: center;
+    padding: 1rem 5vw;
   }
 
-  .alpha-icon {
-    font-size: 4rem;
+  /* Keep Logo on Top Left */
+  .logo-lockup {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    transform: scale(0.85);
+    transform-origin: left center;
   }
 
-  .alpha-details {
-    padding: 1rem;
+  /* Flatten nav so its children follow the site-header grid */
+  nav {
+    display: contents;
   }
 
-  .alpha-detail-row {
+  /* Move Cart Button to Top Right */
+  .cart-nav {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0;
+    padding: 0.5rem 1rem !important; /* Force override to fix squish */
+    font-size: 0.85rem;
+    white-space: nowrap; /* Prevents CART ( \n 1 \n ) wrapping */
+    justify-self: end;
+    border-radius: 99px;
+    background: rgba(247, 194, 97, 0.08) !important;
+  }
+
+  /* Spread Navigation Links evenly below */
+  nav a {
+    grid-row: 2;
+    margin: 0 !important;
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    padding: 0.8rem 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Divider line */
+  }
+
+  nav a:nth-of-type(1) { grid-column: 1; }
+  nav a:nth-of-type(2) { grid-column: 2; }
+  nav a:nth-of-type(3) { grid-column: 3; }
+
+  /* Optimized Hero for Mobile */
+  .hero-section {
+    padding-top: 4rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-content {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .hero-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 12vw, 3.8rem);
+    line-height: 1.1;
+  }
+
+  .hero-icons {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cta-row {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  /* App-Style Bottom Sheet Modals */
+  .cart-overlay {
+    align-items: flex-end;
+  }
+
+  .cart-modal {
+    max-width: 100%;
+    height: 85vh;
+    border-radius: 24px 24px 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(247, 194, 97, 0.4);
+    padding: 1.5rem 1rem env(safe-area-inset-bottom);
+  }
+
+  .checkout-overlay {
+    align-items: flex-end;
+  }
+
+  .checkout-modal {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 24px 24px 0 0;
+    border: 1px solid rgba(247, 194, 97, 0.4);
+    border-bottom: none;
+  }
+
+  .checkout-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  
+  .checkout-body {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  /* Refined Forms and Grids for Small Screens */
+  .order-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .shop-grid, .product-grid, .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .product-card {
+    padding: 1.5rem;
+  }
+
+  .jar-specs {
+    grid-template-columns: 1fr;
+  }
+  
+  .jar-specs > div:last-child {
+    grid-column: span 1;
   }
 }
