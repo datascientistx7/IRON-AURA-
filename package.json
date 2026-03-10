@@ -1,0 +1,16 @@
+{
+    "name": "iron-aura-root",
+    "version": "1.0.0",
+    "description": "Root script content to run Iron Aura frontend",
+    "scripts": {
+        "dev": "http-server public -a 0.0.0.0 -p 3000",
+        "dev:port": "http-server public -a 0.0.0.0 -p 3001",
+        "kill-port": "powershell -Command \"$port = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue; if ($port) { Stop-Process -Id $port.OwningProcess -Force }\" 2>$null || echo Port 3000 is free",
+        "start": "npm run dev",
+        "clean-start": "npm run kill-port && timeout /t 1 /nobreak >nul && npm run dev"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1",
+        "http-server": "^14.1.1"
+    }
+}

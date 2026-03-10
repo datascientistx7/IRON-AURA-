@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Customers Collection - Allow read/write for all (for testing/development)
+    // ⚠️ IMPORTANT: Restrict these rules for production!
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+    
+    // Orders Collection - Allow read/write for all (for testing/development)
+    // ⚠️ IMPORTANT: Restrict these rules for production!
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+    
+    // Default: Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

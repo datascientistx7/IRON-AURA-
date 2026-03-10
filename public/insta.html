@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Connect with Iron Aura on Instagram for stacks, community training clips, and product drops." />
+  <title>Instagram | IRON AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="inner-page">
+  <div class="noise-overlay"></div>
+  <header class="site-header">
+    <div class="logo-lockup">
+      <img src="assets/logo.jpg" alt="Iron Aura Spartan" />
+      <div>
+        <span class="brand-title">IRON AURA</span>
+        <span class="brand-tag">Real Food. Real Gains.</span>
+      </div>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="index.html#shop">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="insta.html" class="active">Instagram</a>
+    <button type="button" class="cart-nav" id="cartToggle">
+      Cart (<span id="cartCount">0</span>)
+    </button>
+    </nav>
+  </header>
+
+  <main class="inner-wrapper">
+    <section class="insta-hero parallax">
+      <div class="insta-hero-card">
+        <p>Follow The Stack</p>
+        <h1>@ironaura_supplements</h1>
+        <p>
+          Raw training edits, Hybrid Power rituals, and every drop announcement.
+        </p>
+        <a class="btn primary"
+          href="https://www.instagram.com/ironaura_supplements?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          target="_blank" rel="noopener">Open
+          Instagram</a>
+      </div>
+    </section>
+
+    <section class="insta-grid">
+      <article class="insta-card">
+        <img src="assets/product-1.png" alt="Hybrid Power jar highlight" loading="lazy" />
+        <div>
+          <h3>Stack Drop</h3>
+          <p>Blend + Tasty Paste ritual for evening anabolic fuel.</p>
+          <a href="https://www.instagram.com/ironaura_supplements?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank" rel="noopener">Watch Reel →</a>
+        </div>
+      </article>
+      <article class="insta-card">
+        <img src="assets/product-2.png" alt="Studio jar shot" loading="lazy" />
+        <div>
+          <h3>Coach Notes</h3>
+          <p>Micro-dosing bee pollen + carbs before a brutal push session.</p>
+          <a href="https://www.instagram.com/ironaura_supplements?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank" rel="noopener">Read Post →</a>
+        </div>
+      </article>
+      <article class="insta-card">
+        <div class="insta-quote">
+          “Consistency is king. Hypertrophy is earned, not bought.”
+        </div>
+        <div>
+          <h3>Alpha Quote</h3>
+          <p>Drop it in your story, tag us, and we’ll repost the grinders.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Cart Modal -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="cartClose" class="close-btn">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will be injected here -->
+        <p class="empty-cart">Your cart is empty.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <strong id="cartTotal">₹0</strong>
+        </div>
+        <button id="checkoutBtn" class="btn primary full-width">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-overlay" id="checkoutOverlay" aria-hidden="true">
+    <div class="checkout-modal">
+      <div class="checkout-header">
+        <h2>Checkout</h2>
+        <button id="checkoutClose" class="close-btn">&times;</button>
+      </div>
+      <div class="checkout-body">
+        <form id="orderForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+91 999 999 9999" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <textarea id="address" name="address" required placeholder="Street address, City, Zip"></textarea>
+          </div>
+          <input type="hidden" id="product" name="product" />
+          <input type="hidden" id="quantity" name="quantity" />
+          <input type="hidden" id="price" name="price" />
+
+          <button id="placeOrderBtn" type="submit" class="btn primary full-width">Place Order</button>
+          <p id="formStatus" class="status-msg"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer class="site-footer">
+    <div>
+      <strong>IRON AURA</strong> <span id="year"></span>. Forged for the
+      relentless.
+    </div>
+    <div class="socials">
+      <a href="https://www.instagram.com/ironaura_supplements?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+        target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:+917075958729">Contact</a>
+
+    </div>
+  </footer>
+
+  <script type="module" src="script.js?v=2" defer></script>
+</body>
+
+</html>

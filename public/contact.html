@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Connect with the IRON AURA crew for wholesale, athlete partnerships, or product questions." />
+  <title>Contact | IRON AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="inner-page">
+  <div class="noise-overlay"></div>
+  <header class="site-header">
+    <div class="logo-lockup">
+      <img src="assets/logo.jpg" alt="Iron Aura Spartan" />
+      <div>
+        <span class="brand-title">IRON AURA</span>
+        <span class="brand-tag">Real Food. Real Gains.</span>
+      </div>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="index.html#shop">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="insta.html">Instagram</a>
+    <button type="button" class="cart-nav" id="cartToggle">
+      Cart (<span id="cartCount">0</span>)
+    </button>
+    </nav>
+  </header>
+
+  <main class="inner-wrapper">
+    <section class="contact-hero parallax">
+      <div>
+        <p>Talk to the crew</p>
+        <h1>Wholesale • Athletes • Orders</h1>
+        <p>
+          Drop a message and we will respond within 24 hours. For instant
+          order questions ping us on WhatsApp after submitting the form.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-grid">
+      <article>
+        <h2>HQ Coordinates</h2>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> forge@ironaura.com</li>
+          <li><strong>Phone:</strong> +91 8978605882 (WhatsApp)</li>
+          <li><strong>Warehouse:</strong> Sector 21, Mumbai</li>
+          <li><strong>Hours:</strong> 5am – 10pm IST</li>
+        </ul>
+      </article>
+      <article>
+        <h2>Send a Message</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Name" required />
+          <input type="email" placeholder="Email" required />
+          <textarea rows="4" placeholder="Your message"></textarea>
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+      </article>
+      <article class="map-card">
+        <h2>Showroom</h2>
+        <div class="map-placeholder">
+          Embed your Google Map iframe here for the flagship gym.
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Cart Modal -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="cartClose" class="close-btn">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will be injected here -->
+        <p class="empty-cart">Your cart is empty.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <strong id="cartTotal">₹0</strong>
+        </div>
+        <button id="checkoutBtn" class="btn primary full-width">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-overlay" id="checkoutOverlay" aria-hidden="true">
+    <div class="checkout-modal">
+      <div class="checkout-header">
+        <h2>Checkout</h2>
+        <button id="checkoutClose" class="close-btn">&times;</button>
+      </div>
+      <div class="checkout-body">
+        <form id="orderForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+91 999 999 9999" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <textarea id="address" name="address" required placeholder="Street address, City, Zip"></textarea>
+          </div>
+          <input type="hidden" id="product" name="product" />
+          <input type="hidden" id="quantity" name="quantity" />
+          <input type="hidden" id="price" name="price" />
+
+          <button id="placeOrderBtn" type="submit" class="btn primary full-width">Place Order</button>
+          <p id="formStatus" class="status-msg"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer class="site-footer">
+    <div>
+      <strong>IRON AURA</strong> <span id="year"></span>. Forged for the
+      relentless.
+    </div>
+    <div class="socials">
+      <a href="https://www.instagram.com/ironaura_supplements?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+        target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:+917075958729">Contact</a>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js?v=2" defer></script>
+</body>
+
+</html>
